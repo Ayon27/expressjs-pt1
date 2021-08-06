@@ -1,15 +1,24 @@
+/*
+ * @Author: Ayon
+ * @Date: 2021-08-06 21:43:43
+ * @Last Modified by: Ayon
+ * @Last Modified time: 2021-08-07 00:36:43
+ */
+
 const express = require("express");
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log("port 3000 active");
-});
+app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.send("Home Page");
-});
+app
+  .route("/home")
+  .get((req, res) => {
+    res.render("index");
+  })
+  .post((req, res) => {
+    res.send("no file found");
+  });
 
-app.post("/", (req, res) => {
-  res.send("post method for home page");
-});
+app.listen(3000, () => {});
+console.log("listening on port " + 3000);
