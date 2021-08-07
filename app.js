@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-06 21:43:43
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-07 00:38:38
+ * @Last Modified time: 2021-08-08 02:38:56
  */
 
 const express = require("express");
@@ -12,7 +12,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 app
-  .route("/")
+  .route("/  ")
   .get((req, res) => {
     res.render("index");
   })
