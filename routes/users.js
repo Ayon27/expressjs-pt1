@@ -1,9 +1,16 @@
-var express = require('express');
+/*
+ * @Author: Ayon
+ * @Date: 2021-08-08 08:43:53
+ * @Last Modified by:   Ayon
+ * @Last Modified time: 2021-08-08 08:43:53
+ */
+
+var express = require("express");
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/", function (req, res, next) {
+  res.send("respond with a resource");
 });
 
 module.exports = router;

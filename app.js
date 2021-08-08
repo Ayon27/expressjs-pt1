@@ -1,3 +1,10 @@
+/*
+ * @Author: Ayon
+ * @Date: 2021-08-08 08:42:28
+ * @Last Modified by: Ayon
+ * @Last Modified time: 2021-08-08 21:56:32
+ */
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -8,9 +15,6 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
-
-//server config
-const PORT = 3000;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -39,12 +43,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-});
-
-//initialize server
-app.listen(PORT, (err) => {
-  if (!err) console.log(`server running on port ${PORT}`);
-  else console.log(err);
 });
 
 module.exports = app;
