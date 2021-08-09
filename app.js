@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-08 08:42:28
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-08 21:56:32
+ * @Last Modified time: 2021-08-09 17:32:10
  */
 
 var createError = require("http-errors");
@@ -13,6 +13,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var regRouter = require("./routes/reg");
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/register", regRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
