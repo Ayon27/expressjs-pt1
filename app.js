@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-08 08:42:28
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-09 22:40:56
+ * @Last Modified time: 2021-08-10 00:55:33
  */
 
 var createError = require("http-errors");
@@ -10,12 +10,14 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var bodyParser = require("body-parser");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var regRouter = require("./routes/reg");
 
 var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
