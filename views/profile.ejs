@@ -7,11 +7,18 @@
     <title>Profile</title>
   </head>
   <body>
-    <h1>Name: <%= name %></h1>
-    <h1>Occupation: <%= occupation %></h1>
-    <form action="/register/user" method="POST">
-      <input type="text" name="name" id="" />
-      <input type="text" name="occupation" id="" />
+    <h4>Name: <%= name %></h4>
+    <h4>Occupation: <%= occupation %></h4>
+    <h4>Company: <%= company %></h4>
+    <h4>Phone: <%= phone %></h4>
+
+    <form action="/register" method="POST">
+      <input type="text" name="username" id="" placeholder="username" />
+      <input type="text" name="name" id="" placeholder="name" />
+      <input type="text" name="occupation" id="" placeholder="occupation" />
+      <input type="text" name="company" id="" placeholder="compnay" />
+      <input type="text" name="phone" id="" placeholder="phone" />
+
       <input type="submit" value="submit" />
     </form>
   </body>
