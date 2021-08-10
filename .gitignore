@@ -69,3 +69,6 @@ dat/dbCredentials.js
 
 #misc
 dat/profiles.json
+/.eslint.json
+package-lock.json
+yarn.lock

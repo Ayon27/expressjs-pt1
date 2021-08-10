@@ -15,7 +15,9 @@
     "mongoose": "^5.13.6",
     "morgan": "~1.9.1",
     "node": "^16.6.1",
-    "prettier": "^2.3.2",
     "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
   }
 }
