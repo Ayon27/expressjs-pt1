@@ -2,27 +2,21 @@
  * @Author: Ayon
  * @Date: 2021-08-10 18:31:04
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-10 19:52:52
+ * @Last Modified time: 2021-08-10 21:39:28
  */
 
 const mongoose = require("mongoose");
 const uri = require("./dat/dbCredentials");
 
-class Database {
-  constructor() {
-    this._connect();
-  }
+dbConnection = {};
 
-  _connect() {
-    mongoose
-      .connect(uri)
-      .then(() => {
-        console.log("Database connection successful");
-      })
-      .catch((err) => {
-        console.error("Database connection error");
-      });
+mongoose.connect(
+  uri,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    if (!err) console.log("Database Connection Successful");
+    else console.log(err);
   }
-}
+);
 
-module.exports = new Database();
+module.exports = dbConnection;
