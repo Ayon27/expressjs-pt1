@@ -66,3 +66,6 @@ typings/
 
 #Database Creds
 dat/dbCredentials.js
+
+#misc
+dat/profiles.json
