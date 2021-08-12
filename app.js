@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-08 08:42:28
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-12 19:39:15
+ * @Last Modified time: 2021-08-12 20:38:24
  */
 
 var createError = require("http-errors");
@@ -56,5 +56,4 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
 module.exports = app;

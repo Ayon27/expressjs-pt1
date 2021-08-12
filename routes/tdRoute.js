@@ -3,7 +3,7 @@
  * @Author: Ayon
  * @Date: 2021-08-10 22:46:52
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-12 16:44:42
+ * @Last Modified time: 2021-08-12 20:29:18
  */
 
 const express = require("express");
@@ -12,11 +12,12 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 const tdSchema = require("../dat/schemas/tdSchema");
+const checkLogin = require("../middlewares/checkLogin");
 
 const td = new mongoose.model("td", tdSchema);
 
 //finds and displays all entries
-router.get("/", (req, res) => {
+router.get("/", checkLogin, (req, res) => {
   // //finds and displays all info of an entry
   // td.find({ status: "active" }, (err, data) => {
   //   if (err) console.log(err);
@@ -43,9 +44,11 @@ router.get("/", (req, res) => {
   //   });
 
   //can be done like this as well. 0 means do not show
-  td.find({ status: "active" }, { _id: 0, __v: 0, status: 0 }, (err, data) => {
-    if (err) console.log(err);
-    else {
+  td.find({}, { _id: 0, __v: 0, status: 0 }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.send("Unauthorized");
+    } else {
       res.send({ success: "Successful", result: data });
     }
   })

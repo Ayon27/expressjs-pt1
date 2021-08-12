@@ -2,17 +2,18 @@
  * @Author: Ayon
  * @Date: 2021-08-12 18:18:07
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-12 20:01:30
+ * @Last Modified time: 2021-08-12 20:18:31
  */
 
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSchema = require("../dat/schemas/userSchema");
+const checkLogin = require("../middlewares/checkLogin");
+
 const { token } = require("morgan");
 const User = new mongoose.model("user", userSchema);
 
@@ -73,4 +74,5 @@ router.post("/login", async (req, res) => {
     console.log(err);
   }
 });
+
 module.exports = router;
