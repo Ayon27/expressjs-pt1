@@ -13,7 +13,7 @@ const checkLogin = (req, res, next) => {
     // console.log(err);
     // next("Auth Error");
     console.log(err);
-    res.send("Unauthorized");
+    res.send("Unauthorized lol. go sign up bitch");
   }
 };
 

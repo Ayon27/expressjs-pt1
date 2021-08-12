@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-08 08:42:28
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-13 00:11:25
+ * @Last Modified time: 2021-08-13 02:01:35
  */
 
 var createError = require("http-errors");
@@ -19,6 +19,7 @@ const dotenv = require("dotenv");
 // var regRouter = require("./routes/reg");
 var tdRoute = require("./routes/tdRoute");
 var userRoute = require("./routes/userRoute");
+var profileRoute = require("./routes/profileRoute");
 
 var app = express();
 // app.use(bodyParser.urlencoded({ extended: true }));;
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/todo", tdRoute);
 app.use("/", userRoute);
+app.use("/profile", profileRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
