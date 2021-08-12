@@ -3,7 +3,7 @@
  * @Author: Ayon
  * @Date: 2021-08-10 22:46:52
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-11 01:50:10
+ * @Last Modified time: 2021-08-12 16:44:42
  */
 
 const express = require("express");
@@ -16,7 +16,7 @@ const tdSchema = require("../dat/schemas/tdSchema");
 const td = new mongoose.model("td", tdSchema);
 
 //finds and displays all entries
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
   // //finds and displays all info of an entry
   // td.find({ status: "active" }, (err, data) => {
   //   if (err) console.log(err);
@@ -43,38 +43,34 @@ router.get("/", async (req, res) => {
   //   });
 
   //can be done like this as well. 0 means do not show
-  await td
-    .find({ status: "active" }, { _id: 0, __v: 0, status: 0 }, (err, data) => {
-      if (err) console.log(err);
-      else {
-        res.send({ success: "Successful", result: data });
-      }
-    })
+  td.find({ status: "active" }, { _id: 0, __v: 0, status: 0 }, (err, data) => {
+    if (err) console.log(err);
+    else {
+      res.send({ success: "Successful", result: data });
+    }
+  })
     // .limit(1)
     .lean();
 });
 
 //find single one
 router.get("/:id", async (req, res) => {
-  await td
-    .find(
-      { _id: req.params.id },
-      { _id: 0, __v: 0, status: 0 },
-      (err, data) => {
-        if (err) console.log(err);
-        else {
-          res.send({ success: "Successful", result: data });
-        }
-      }
-    )
-    // .limit(1)
-    .lean();
+  try {
+    const data = await td
+      .find({ _id: req.params.id }, { _id: 0, __v: 0, status: 0 })
+      // .limit(1)
+      .lean();
+    res.json({ success: "Successful", result: data });
+  } catch (err) {
+    console.log(err);
+    res.send("error");
+  }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", (req, res) => {
   const newtd = new td(req.body);
 
-  await newtd.save((err) => {
+  newtd.save((err) => {
     if (err) {
       res.status(500).json({
         error: "server side error",
