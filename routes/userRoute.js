@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-12 18:18:07
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-12 19:49:40
+ * @Last Modified time: 2021-08-12 20:01:30
  */
 
 const express = require("express");
@@ -19,7 +19,7 @@ const User = new mongoose.model("user", userSchema);
 //signup
 router.post("/signup", async (req, res) => {
   try {
-    const hashedPwd = await bcrypt.hash("helo", 10);
+    const hashedPwd = await bcrypt.hash(req.body.password, 10);
 
     const newUser = new User({
       name: req.body.name,
@@ -48,8 +48,8 @@ router.post("/login", async (req, res) => {
 
       if (isValidPwd) {
         const token = jwt.sign(
-          { username: user[0].username, userId: _id },
-          process.env.SECRET,
+          { username: user[0].username, userId: user[0]._id },
+          process.env.JWT_SECRET,
           {
             expiresIn: "1h",
           }
@@ -61,12 +61,12 @@ router.post("/login", async (req, res) => {
         });
       } else {
         res.status(401).json({
-          error: "Invalid username and password",
+          error: "Invalid username or password",
         });
       }
     } else {
       res.status(401).json({
-        error: "Invalid username and password",
+        error: "Invalid username or password",
       });
     }
   } catch (err) {
