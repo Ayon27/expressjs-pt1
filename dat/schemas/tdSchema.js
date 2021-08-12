@@ -14,6 +14,12 @@ const tdSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+  },
 });
 
-module.exports = tdSchema;
+const td = new mongoose.model("td", tdSchema);
+
+module.exports = td;

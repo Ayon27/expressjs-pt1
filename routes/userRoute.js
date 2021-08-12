@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-12 18:18:07
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-12 20:18:31
+ * @Last Modified time: 2021-08-13 01:05:47
  */
 
 const express = require("express");
@@ -11,11 +11,10 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const userSchema = require("../dat/schemas/userSchema");
+const User = require("../dat/schemas/userSchema");
 const checkLogin = require("../middlewares/checkLogin");
 
 const { token } = require("morgan");
-const User = new mongoose.model("user", userSchema);
 
 //signup
 router.post("/signup", async (req, res) => {

@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-12 18:14:28
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-12 19:46:19
+ * @Last Modified time: 2021-08-13 01:38:18
  */
 
 const mongoose = require("mongoose");
@@ -26,4 +26,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-module.exports = userSchema;
+const User = new mongoose.model("User", userSchema);
+
+module.exports = User;
