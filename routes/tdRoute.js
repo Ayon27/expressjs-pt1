@@ -2,11 +2,11 @@
  * @Author: Ayon
  * @Date: 2021-08-10 22:46:52
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-13 01:56:45
+ * @Last Modified time: 2021-08-14 22:15:03
  */
 
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ const td = require("../dat/schemas/tdSchema");
 const checkLogin = require("../middlewares/checkLogin");
 
 // const td = new mongoose.model("td", tdSchema);
-const User = require("../dat/schemas/userSchema");
+// const User = require("../dat/schemas/userSchema");
 
 //finds and displays all entries
 router.get("/", checkLogin, async (req, res) => {
@@ -71,7 +71,7 @@ router.get("/:id", checkLogin, async (req, res) => {
 });
 
 //inserts new
-router.post("/", checkLogin, async (req, res) => {
+router.post("/add", checkLogin, async (req, res) => {
   const newtd = new td({ ...req.body, user: req.userId });
   try {
     // console.log(req.userId);
