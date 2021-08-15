@@ -2,7 +2,7 @@
  * @Author: Ayon
  * @Date: 2021-08-10 22:46:52
  * @Last Modified by: Ayon
- * @Last Modified time: 2021-08-14 22:15:03
+ * @Last Modified time: 2021-08-15 01:11:20
  */
 
 const express = require("express");
@@ -45,14 +45,15 @@ router.get("/", checkLogin, async (req, res) => {
 
   //can be done like this as well. 0 means do not show
   try {
+    const query = req.query;
     const data = await td
       .find({ user: req.userId }, { _id: 0, __v: 0, status: 0 })
       .populate("user", "name username -_id")
       .lean();
-    res.send({ success: "Successful", result: data });
+    res.send({ message: "Successful", result: data });
   } catch (err) {
     console.log(err);
-    res.send("Unauthorized");
+    res.send("Error");
   }
 });
 
@@ -65,7 +66,7 @@ router.get("/:id", checkLogin, async (req, res) => {
       .lean();
     res.json({ success: "Successful", result: data });
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
     res.send("error");
   }
 });
